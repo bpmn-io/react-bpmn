@@ -1,0 +1,36 @@
+{
+  "name": "react-bpmn",
+  "version": "0.0.0",
+  "description": "Embed BPMN 2.0 diagrams in your React app",
+  "main": "dist/index.js",
+  "scripts": {
+    "bundle": "NODE_ENV=production rollup -c",
+    "prepublishOnly": "npm run bundle"
+  },
+  "module": "dist/index.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/react-bpmn.git"
+  },
+  "keywords": [
+    "bpmn-js",
+    "bpmn",
+    "react-js",
+    "react"
+  ],
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/nikku"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-preset-react-app": "^7.0.2",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "rollup": "^1.7.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.2"
+  }
+}

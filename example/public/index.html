@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>react-bpmn example</title>
+
+  <!-- app dependency -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <!-- dependency for the UMD bundle -->
+  <script src="../node_modules/bpmn-js/dist/bpmn-navigated-viewer.development.js"></script>
+
+  <!-- react-bpmn umd distribution -->
+  <script src="../node_modules/react-bpmn/dist/react-bpmn.umd.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+  <style>
+    .diagram-container {
+      height:  300px;
+    }
+
+    .react-bpmn-diagram-container {
+      width: 100%;
+      height:  100%;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Display BPMN 2.0 Diagrams Using React</h1>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a tincidunt dolor. Nam semper est ut mauris cursus, vel laoreet nunc vehicula. Mauris nec semper ipsum. Integer feugiat mi at elementum fringilla. Nunc malesuada ante sed ligula pretium, eu lobortis lorem rhoncus. Praesent et ipsum ante. Aliquam est mi, ultrices ut neque eget, mollis pulvinar sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam auctor porta sapien in venenatis.
+    </p>
+
+    <p>
+      In fringilla suscipit odio quis tincidunt. Morbi felis elit, blandit a volutpat eget, rutrum ut mi. Duis ac orci at nibh semper vehicula. Quisque vulputate, nibh vitae laoreet convallis, urna erat imperdiet eros, et interdum arcu arcu ac risus. Maecenas in tellus nisi. Mauris quis lectus luctus, condimentum orci eu, rhoncus sapien. Aliquam at lobortis mauris, eget facilisis arcu. Quisque metus purus, rhoncus et tortor id, ornare maximus neque. Donec et ex tincidunt, malesuada lacus in, volutpat eros. Cras nisi arcu, dapibus quis odio sit amet, placerat blandit elit. Nullam at dictum mauris. Nulla feugiat elit ex, a pulvinar velit faucibus a. Nulla tincidunt velit purus, in faucibus ligula ornare venenatis.
+    </p>
+
+    <div id="diagram" class="diagram-container"></div>
+
+    <p>
+      Ut vestibulum, magna at molestie tempus, enim sem molestie est, vel tincidunt orci leo vel sapien. Vivamus convallis, purus in rhoncus ultricies, mauris sapien condimentum sapien, vel porta urna est eu leo. Nam dui erat, venenatis at metus ut, rutrum rutrum lacus. Fusce non eros vehicula, aliquet nibh vitae, bibendum dolor. Sed hendrerit lectus ex. Mauris id venenatis metus. In hac habitasse platea dictumst.
+    </p>
+
+    <p>
+      Etiam molestie, erat eget tincidunt rutrum, nulla odio pulvinar nibh, in pulvinar felis mauris a nunc. Sed eu ullamcorper ex, id tincidunt metus. Quisque lectus enim, vehicula eget aliquam sit amet, semper ut nisl. Vivamus ultrices, cras odio massa, sagittis in luctus sed, mattis eu massa. Nam erat nibh, pulvinar vel hendrerit quis, ultricies eu sapien. Integer fringilla sapien ex, et posuere arcu euismod et.
+    </p>
+
+    <p>
+      Suspendisse potenti. In ut lorem vitae dolor molestie commodo. Vivamus mattis gravida metus, porttitor ornare augue lacinia suscipit. Duis condimentum fringilla nisl, non consequat odio mollis id. Nulla tincidunt interdum elit, sed tristique ex laoreet lobortis. Suspendisse in felis vitae magna convallis semper. Nullam odio risus, venenatis eget erat ac, pretium aliquet urna. Duis luctus lobortis maximus.
+    </p>
+  </div>
+  <script type="text/babel">
+
+    function onError(err) {
+      console.error('failed to render diagram', err);
+    }
+
+    function onLoading() {
+      console.log('loading diagram');
+    }
+
+    function onShown() {
+      console.log('diagram shown');
+    }
+
+    ReactDOM.render(
+      <ReactBpmn
+        url="/public/diagram.bpmn"
+        onLoading={ onLoading }
+        onShown={ onShown }
+        onError={ onError }
+      />,
+      document.querySelector('#diagram')
+    );
+  </script>
+</body>
+</html>

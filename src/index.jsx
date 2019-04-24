@@ -52,7 +52,7 @@ export default class ReactBpmn extends React.Component {
     } = this;
 
     if (props.url !== prevProps.url) {
-      return this.fetchDiagram(url);
+      return this.fetchDiagram(props.url);
     }
 
     if (state.diagramXML !== prevState.diagramXML) {

@@ -1,6 +1,6 @@
 {
   "name": "react-bpmn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Embed BPMN 2.0 diagrams in your React app",
   "main": "dist/index.js",
   "scripts": {

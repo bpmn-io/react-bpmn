@@ -16,7 +16,8 @@ export default class ReactBpmn extends React.Component {
   componentDidMount() {
 
     const {
-      url
+      url,
+      diagramXML
     } = this.props;
 
     const container = this.containerRef.current;
@@ -38,7 +39,13 @@ export default class ReactBpmn extends React.Component {
       return this.handleShown(warnings);
     });
 
-    this.fetchDiagram(url);
+    if (url) {
+      return this.fetchDiagram(url);
+    }
+
+    if (diagramXML) {
+      return this.displayDiagram(diagramXML);
+    }
   }
 
   componentWillUnmount() {
@@ -55,9 +62,17 @@ export default class ReactBpmn extends React.Component {
       return this.fetchDiagram(props.url);
     }
 
-    if (state.diagramXML !== prevState.diagramXML) {
-      return this.bpmnViewer.importXML(state.diagramXML);
+    const currentXML = props.diagramXML || state.diagramXML;
+
+    const previousXML = prevProps.diagramXML || prevState.diagramXML;
+
+    if (currentXML && currentXML !== previousXML) {
+      return this.displayDiagram(currentXML);
     }
+  }
+
+  displayDiagram(diagramXML) {
+    this.bpmnViewer.importXML(diagramXML);
   }
 
   fetchDiagram(url) {

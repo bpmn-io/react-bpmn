@@ -67,13 +67,63 @@
       console.log('diagram shown');
     }
 
+    class ExternalLoadedBpmn extends React.Component {
+
+      constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        const { url } = props;
+
+        fetch(url).then(res => res.text()).then(diagramXML => {
+          this.setState({
+            diagramXML
+          });
+        });
+      }
+
+      render() {
+
+        const {
+          onError,
+          onShown,
+          onLoading
+        } = this.props;
+
+        const { diagramXML } = this.state;
+
+        return (
+          diagramXML
+            ? <ReactBpmn
+                diagramXML={ diagramXML }
+                onLoading={ onLoading }
+                onShown={ onShown }
+                onError={ onError }
+              />
+            : null
+        );
+      }
+
+    }
+
     ReactDOM.render(
-      <ReactBpmn
-        url="/public/diagram.bpmn"
-        onLoading={ onLoading }
-        onShown={ onShown }
-        onError={ onError }
-      />,
+      <div>
+        <ReactBpmn
+          url="/public/diagram.bpmn"
+          onLoading={ onLoading }
+          onShown={ onShown }
+          onError={ onError }
+        />
+        <hr />
+
+        <ExternalLoadedBpmn
+          url="/public/diagram.bpmn"
+          onLoading={ onLoading }
+          onShown={ onShown }
+          onError={ onError }
+        />
+      </div>,
       document.querySelector('#diagram')
     );
   </script>

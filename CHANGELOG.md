@@ -6,6 +6,10 @@ All notable changes to [react-bpmn](https://github.com/bpmn-io/react-bpmn) are d
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.2.0
+
+* `FEAT`: allow open pre-loaded diagram (via `diagramXML` prop)
+
 ## 0.1.1
 
 * `FIX`: correct url update handling

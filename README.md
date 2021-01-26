@@ -40,6 +40,9 @@ function App(props) {
 * [Issues](https://github.com/bpmn-io/react-bpmn/issues)
 * [Example](./example)
 
+## Sandbox 
+https://codesandbox.io/s/eloquent-river-42gfc?file=/src/App.js
+
 
 ## License
 

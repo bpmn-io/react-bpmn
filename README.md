@@ -25,7 +25,7 @@ function App(props) {
 
   return (
     <ReactBpmn
-      url="/public/diagram.bpmn"
+      url="https://cdn.statically.io/gh/camunda/camunda-modeler/v3.5.0/resources/diagram/simple.bpmn"
       onShown={ onShown }
       onLoading={ onLoading }
       onError={ onError }

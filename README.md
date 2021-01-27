@@ -1,5 +1,7 @@
 # react-bpmn
 
+[![CI](https://github.com/bpmn-io/react-bpmn/workflows/CI/badge.svg)](https://github.com/bpmn-io/react-bpmn/actions?query=workflow%3ACI)
+
 Use [bpmn-js](https://github.com/bpmn-io/bpmn-js) to display BPMN 2.0 diagrams in a [React](https://reactjs.org/) application.
 
 

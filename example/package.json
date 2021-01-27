@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bpmn-js": "^6.2.0",
+    "bpmn-js": "^8.1.0",
     "react-bpmn": "file:.."
   },
   "devDependencies": {

@@ -4,7 +4,7 @@
   "description": "An example using react-bpmn inside a React application",
   "private": true,
   "scripts": {
-    "start": "sirv start --dev"
+    "start": "sirv . start --dev"
   },
   "license": "MIT",
   "dependencies": {
@@ -12,6 +12,6 @@
     "react-bpmn": "file:.."
   },
   "devDependencies": {
-    "sirv-cli": "^0.4.5"
+    "sirv-cli": "^1.0.10"
   }
 }

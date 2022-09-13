@@ -46,6 +46,10 @@ npm install
 npm run all
 ```
 
+## Example
+
+To run the example, execute `npm run start` and open http://localhost:5000/public in your Webbrowser.
+
 ## Resources
 
 * [Issues](https://github.com/bpmn-io/react-bpmn/issues)

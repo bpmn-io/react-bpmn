@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "description": "Embed BPMN 2.0 diagrams in your React app",
   "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "all": "npm run bundle",
     "bundle": "NODE_ENV=production rollup -c",

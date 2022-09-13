@@ -10,7 +10,9 @@
   "scripts": {
     "all": "npm run bundle",
     "bundle": "NODE_ENV=production rollup -c",
-    "prepublishOnly": "npm run bundle"
+    "prepublishOnly": "npm run bundle",
+    "postinstall": "cd example && npm install",
+    "start:example": "cd example && npm start"
   },
   "module": "dist/index.esm.js",
   "repository": {

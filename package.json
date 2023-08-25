@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "all": "npm run bundle",
-    "bundle": "NODE_ENV=production rollup -c",
+    "bundle": "NODE_ENV=production rollup -c --bundleConfigAsCjs",
     "prepublishOnly": "npm run bundle",
     "postinstall": "cd example && npm install",
     "start": "cd example && npm start"

@@ -53,7 +53,7 @@
       Suspendisse potenti. In ut lorem vitae dolor molestie commodo. Vivamus mattis gravida metus, porttitor ornare augue lacinia suscipit. Duis condimentum fringilla nisl, non consequat odio mollis id. Nulla tincidunt interdum elit, sed tristique ex laoreet lobortis. Suspendisse in felis vitae magna convallis semper. Nullam odio risus, venenatis eget erat ac, pretium aliquet urna. Duis luctus lobortis maximus.
     </p>
   </div>
-    <script type="text/babel">
+  <script type="text/babel">
     function onError(err) {
       console.error('failed to render diagram', err);
     }
@@ -67,7 +67,7 @@
     }
 
     function ExternalLoadedBpmn({ url }) {
-      const [diagramXML, setDiagramXML] = React.useState()
+      const [diagramXML, setDiagramXML] = React.useState();
 
       React.useEffect(() => {
         const abortController = new AbortController();
@@ -75,9 +75,9 @@
           try {
             const response = await fetch(url, {
               signal: abortController.signal
-            })
-            const result = await response.text()
-            setDiagramXML(result)
+            });
+            const result = await response.text();
+            setDiagramXML(result);
 
           } catch (error) {
             if (!abortController.signal.aborted) {
@@ -86,7 +86,7 @@
           }
         }
 
-        loadXml()
+        loadXml();
 
         return () => abortController.abort();
       }, [url])
@@ -104,7 +104,7 @@
     }
 
     const container = document.querySelector('#diagram');
-    const root = ReactDOM.createRoot(container)
+    const root = ReactDOM.createRoot(container);
     root.render(
       <div>
         <ReactBpmn

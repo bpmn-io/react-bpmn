@@ -4,8 +4,8 @@
   <title>react-bpmn example</title>
 
   <!-- app dependency -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
   <!-- dependency for the UMD bundle -->
   <script src="../node_modules/bpmn-js/dist/bpmn-navigated-viewer.development.js"></script>
@@ -18,7 +18,7 @@
 
   <style>
     .diagram-container {
-      height:  300px;
+      height:  400px;
     }
 
     .react-bpmn-diagram-container {
@@ -54,7 +54,6 @@
     </p>
   </div>
   <script type="text/babel">
-
     function onError(err) {
       console.error('failed to render diagram', err);
     }
@@ -67,65 +66,63 @@
       console.log('diagram shown');
     }
 
-    class ExternalLoadedBpmn extends React.Component {
+    function ExternalLoadedBpmn({ url }) {
+      const [diagramXML, setDiagramXML] = React.useState();
 
-      constructor(props) {
-        super(props);
+      React.useEffect(() => {
+        const abortController = new AbortController();
+        const loadXml = async () => {
+          try {
+            const response = await fetch(url, {
+              signal: abortController.signal
+            });
+            const result = await response.text();
+            setDiagramXML(result);
 
-        this.state = {};
+          } catch (error) {
+            if (!abortController.signal.aborted) {
+              console.log(error);
+            }
+          }
+        }
 
-        const { url } = props;
+        loadXml();
 
-        fetch(url).then(res => res.text()).then(diagramXML => {
-          this.setState({
-            diagramXML
-          });
-        });
-      }
+        return () => abortController.abort();
+      }, [url])
 
-      render() {
-
-        const {
-          onError,
-          onShown,
-          onLoading
-        } = this.props;
-
-        const { diagramXML } = this.state;
-
-        return (
-          diagramXML
-            ? <ReactBpmn
-                diagramXML={ diagramXML }
-                onLoading={ onLoading }
-                onShown={ onShown }
-                onError={ onError }
-              />
-            : null
-        );
-      }
-
+      return (
+        diagramXML
+          ? <ReactBpmn
+            diagramXML={diagramXML}
+            onLoading={onLoading}
+            onShown={onShown}
+            onError={onError}
+          />
+          : null
+      );
     }
 
-    ReactDOM.render(
+    const container = document.querySelector('#diagram');
+    const root = ReactDOM.createRoot(container);
+    root.render(
       <div>
         <ReactBpmn
-          url="/public/diagram.bpmn"
-          onLoading={ onLoading }
-          onShown={ onShown }
-          onError={ onError }
+          url="/diagram.bpmn"
+          onLoading={onLoading}
+          onShown={onShown}
+          onError={onError}
         />
         <hr />
 
         <ExternalLoadedBpmn
-          url="/public/diagram.bpmn"
-          onLoading={ onLoading }
-          onShown={ onShown }
-          onError={ onError }
+          url="/diagram.bpmn"
+          onLoading={onLoading}
+          onShown={onShown}
+          onError={onError}
         />
-      </div>,
-      document.querySelector('#diagram')
-    );
+      </div>
+    )
   </script>
 </body>
 </html>

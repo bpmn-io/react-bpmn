@@ -12,6 +12,6 @@
     "react-bpmn": "^0.2.0"
   },
   "devDependencies": {
-    "sirv-cli": "^2.0.2"
+    "sirv-cli": "^3.0.0"
   }
 }

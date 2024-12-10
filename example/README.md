@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-This puts up the example to [localhost:5000/public/index.html](http://localhost:5000/public/index.html).
+This puts up the example to [localhost:9869/public/index.html](http://localhost:9869/public/index.html).
 
 
 ## License

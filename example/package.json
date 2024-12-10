@@ -4,7 +4,7 @@
   "description": "An example using react-bpmn inside a React application",
   "private": true,
   "scripts": {
-    "start": "sirv . start --dev --port=5000"
+    "start": "sirv . start --dev --port=9869"
   },
   "license": "MIT",
   "dependencies": {

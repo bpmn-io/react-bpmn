@@ -48,7 +48,7 @@ npm run all
 
 ## Example
 
-To run the example, execute `npm run start` and open http://localhost:5000/public in your Webbrowser.
+To run the example, execute `npm run start` and open http://localhost:9869/public in your Webbrowser.
 
 ## Resources
 

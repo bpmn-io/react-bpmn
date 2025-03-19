@@ -1,45 +1,40 @@
-import React from 'react';
+import React from "react";
 
-import BpmnJS from 'bpmn-js/dist/bpmn-navigated-viewer.production.min.js';
-
+import BpmnJS from "bpmn-js/dist/bpmn-navigated-viewer.production.min.js";
 
 export default class ReactBpmn extends React.Component {
-
   constructor(props) {
     super(props);
 
-    this.state = { };
+    this.state = {};
 
     this.containerRef = React.createRef();
   }
 
   componentDidMount() {
-
-    const {
-      url,
-      diagramXML
-    } = this.props;
+    const { url, fetchFunc, diagramXML } = this.props;
 
     const container = this.containerRef.current;
 
     this.bpmnViewer = new BpmnJS({ container });
 
-    this.bpmnViewer.on('import.done', (event) => {
-      const {
-        error,
-        warnings
-      } = event;
+    this.bpmnViewer.on("import.done", (event) => {
+      const { error, warnings } = event;
 
       if (error) {
         return this.handleError(error);
       }
 
-      this.bpmnViewer.get('canvas').zoom('fit-viewport');
+      this.bpmnViewer.get("canvas").zoom("fit-viewport");
 
       return this.handleShown(warnings);
     });
 
     if (url) {
+      if (fetchFunc) {
+        return this.handleCustomFetch(url);
+      }
+
       return this.fetchDiagram(url);
     }
 
@@ -53,12 +48,13 @@ export default class ReactBpmn extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {
-      props,
-      state
-    } = this;
+    const { props, state } = this;
 
     if (props.url !== prevProps.url) {
+      if (props.fetchFunc) {
+        return this.handleCustomFetch(props.url);
+      }
+
       return this.fetchDiagram(props.url);
     }
 
@@ -75,14 +71,23 @@ export default class ReactBpmn extends React.Component {
     this.bpmnViewer.importXML(diagramXML);
   }
 
-  fetchDiagram(url) {
+  handleCustomFetch(url) {
+    this.handleLoading();
+    this.props
+      .fetchFunc(url)
+      .then((diagramXML) => {
+        this.setState({ diagramXML });
+      })
+      .catch((err) => this.handleError(err));
+  }
 
+  fetchDiagram(url) {
     this.handleLoading();
 
     fetch(url)
-      .then(response => response.text())
-      .then(text => this.setState({ diagramXML: text }))
-      .catch(err => this.handleError(err));
+      .then((response) => response.text())
+      .then((text) => this.setState({ diagramXML: text }))
+      .catch((err) => this.handleError(err));
   }
 
   handleLoading() {
@@ -111,7 +116,10 @@ export default class ReactBpmn extends React.Component {
 
   render() {
     return (
-      <div className="react-bpmn-diagram-container" ref={ this.containerRef }></div>
+      <div
+        className="react-bpmn-diagram-container"
+        ref={this.containerRef}
+      ></div>
     );
   }
 }

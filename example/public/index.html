@@ -115,6 +115,18 @@
         />
         <hr />
 
+        <ReactBpmn
+          url="/public/diagram.bpmn"
+          fetchFunc={async (url)=> {
+            const response = await fetch(url);
+            return await response.text();
+          }}
+          onLoading={onLoading}
+          onShown={onShown}
+          onError={onError}
+        />
+        <hr />
+
         <ExternalLoadedBpmn
           url="/public/diagram.bpmn"
           onLoading={onLoading}
